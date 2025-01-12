@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, render_template, Response
-from flask_cors import CORS  # Add this import to enable CORS
 import os
 from pydub import AudioSegment
 from transformers import pipeline
@@ -8,9 +7,6 @@ import numpy as np
 import time
 
 app = Flask(__name__)
-
-# Enable CORS
-CORS(app)
 
 # Path to store uploaded files
 UPLOAD_FOLDER = 'uploads'
@@ -115,4 +111,4 @@ def progress_stream():
     return Response(generate(), content_type="text/event-stream")
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=5000)  # Ensure it's accessible on all IPs for deployment
+    app.run(debug=True)

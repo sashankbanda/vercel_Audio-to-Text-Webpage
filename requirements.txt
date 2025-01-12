@@ -5,4 +5,3 @@ pydub
 numpy
 torch
 gunicorn
-flask-cors
