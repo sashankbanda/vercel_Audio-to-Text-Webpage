@@ -5,9 +5,6 @@ const progressStatus = document.getElementById('progress-status');
 const processUpdates = document.getElementById('process-updates');
 const transcriptionResult = document.getElementById('transcription-result');
 
-// Backend URL (Render)
-const apiUrl = 'https://deploy-audio-to-text-webpage.onrender.com';  // Backend URL
-
 // Handle form submission
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -31,7 +28,7 @@ form.addEventListener('submit', (event) => {
     // Create XMLHttpRequest for progress tracking
     const xhr = new XMLHttpRequest();
 
-    xhr.open('POST', `${apiUrl}/upload`, true); // Use the backend URL
+    xhr.open('POST', '/upload', true);
 
     // Update progress bar during upload
     xhr.upload.onprogress = (event) => {
@@ -70,7 +67,7 @@ form.addEventListener('submit', (event) => {
 });
 
 // Listen for real-time progress updates via SSE
-const eventSource = new EventSource(`${apiUrl}/progress`);  // Backend URL
+const eventSource = new EventSource('/progress');
 eventSource.onmessage = (event) => {
     const message = event.data;
     // Append the new message to process updates
